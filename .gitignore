@@ -1,5 +1,6 @@
 .env
 bun.lock
+test.http
 
 # Logs
 logs

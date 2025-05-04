@@ -1,6 +1,6 @@
 
 import { relations } from "drizzle-orm";
-import { pgTable, serial, varchar,timestamp ,numeric, integer, text, char, boolean } from "drizzle-orm/pg-core";
+import { pgTable, serial, varchar,timestamp ,numeric, integer, char, boolean } from "drizzle-orm/pg-core";
 
 export const kategori = pgTable("kategori", {
     idKategori: serial("id_kategori").primaryKey(),

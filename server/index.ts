@@ -1,19 +1,25 @@
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
-import { db } from "../db";
+import kategoriRoute from "./routes/kategori" 
+import pembuatRoute from "./routes/pembuat" 
+import penerbitRoute from "./routes/penerbit" 
+import bukuRoute from "./routes/buku" 
+import { cors } from 'hono/cors'
 
 const app = new Hono();
 
-app.get("/api/hello", (c) => {
-  return c.json({ message: "Hello from Hono API!" });
-});
+app.use('*', cors({
+  origin: 'http://localhost:5173',
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowHeaders: ['Content-Type'],
+}))
 
-app.get("/test", async (c) =>{
-  const result = await db.execute("select 1")
-  return c.json(result, 200)
-})
+app.route('/kategori', kategoriRoute)
+app.route('/pembuat', pembuatRoute)
+app.route('/penerbit', penerbitRoute)
+app.route('/buku', bukuRoute)
 
-// Jalankan server di port 3000
+
 serve({
   fetch: app.fetch,
   port: 3000,
