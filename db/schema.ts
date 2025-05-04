@@ -6,21 +6,21 @@ export const kategori = pgTable("kategori", {
     idKategori: serial("id_kategori").primaryKey(),
     kodeKategori: varchar("kode_kategori").notNull(),
     namaKategori: varchar("nama_kategori").notNull(),
-    createdAt: timestamp("created_at").notNull(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at"),
 })
 
 export const penerbit = pgTable("penerbit", {
     idPenerbit: serial("id_penerbit").primaryKey(),
     namaPenerbit: varchar("nama_penerbit").notNull(),
-    reatedAt: timestamp("created_at").notNull(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at"),
 })
 
 export const pembuat = pgTable("pembuat", {
     idPembuat: serial("id_pembuat").primaryKey(),
     namaPembuat: varchar("nama_pembuat").notNull(),
-    reatedAt: timestamp("created_at").notNull(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at"),
 })
 
@@ -44,13 +44,13 @@ export const buku = pgTable("buku", {
             onDelete: "cascade",
             onUpdate: "cascade"
         }),
+    namaBuku: varchar("nama_buku").notNull(),
     isbn: varchar("isbn").notNull(),
     issn: varchar("issn").notNull(),
     tahunPembuatan: char("tahun_pembuatan", {length: 4}).notNull(),
     harga: numeric("harga").notNull(),
-    keterangan: text("keterangan"),
-    tersedia: boolean("tersedia").notNull(),
-    reatedAt: timestamp("created_at").notNull(),
+    keterangan: boolean("keterangan").notNull(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at"),
 })
 
