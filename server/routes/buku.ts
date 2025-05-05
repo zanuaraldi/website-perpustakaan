@@ -14,6 +14,7 @@ bukuRoute
                 .leftJoin(kategori, eq(buku.idKategori, kategori.idKategori))
                 .leftJoin(penerbit, eq(buku.idPenerbit, penerbit.idPenerbit))
                 .leftJoin(pembuat, eq(buku.idPembuat, pembuat.idPembuat))
+                .orderBy(buku.idBuku)
             console.log(result)
             console.log(result.map(r => r.kategori?.namaKategori))
             return c.json(result, 200)
